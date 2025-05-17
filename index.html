@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover The Bahamas - Paradise Awaits</title>
+    <style>
+        :root {
+            --primary-color: #0077be;
+            --secondary-color: #ffd700;
+            --text-color: #333;
+            --background-color: #f4f4f4;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .hero {
+            background-image: url('https://images.unsplash.com/photo-1548574505-5e239809ee19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1264&q=80');
+            
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 2rem;
+            border-radius: 10px;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #e6c200;
+        }
+
+        section {
+            padding: 4rem 0;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .feature i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        .cuisines, .places {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .cuisine-item, .place-item {
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .cuisine-item:hover, .place-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .cuisine-item img, .place-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .cuisine-item-content, .place-item-content {
+            padding: 1rem;
+        }
+
+        .cuisine-item h3, .place-item h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .rating {
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .star {
+            font-size: 1.5rem;
+            color: #ccc;
+            cursor: pointer;
+        }
+
+        .star.active {
+            color: var(--secondary-color);
+        }
+
+        .testimonials {
+            text-align: center;
+        }
+
+        .testimonial {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .testimonial img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            object-fit: cover;
+        }
+
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        form input,
+        form textarea {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        form textarea {
+            height: 150px;
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 5px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-image {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .modal h2 {
+            margin-top: 0;
+        }
+
+        .modal .rating {
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            nav {
+                flex-direction: column;
+            }
+
+            nav ul {
+                margin-top: 1rem;
+            }
+
+            nav ul li {
+                margin-left: 0;
+                margin-right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <h1>Bahamas Tourism</h1>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#cuisines">Cuisines</a></li>
+                <li><a href="#places">Places to Visit</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Discover The Bahamas</h1>
+                <p>Experience paradise on Earth</p>
+                <a href="#contact" class="btn">Plan Your Trip</a>
+            </div>
+        </section>
+
+        <section id="about" class="container">
+            <h2>Why Choose The Bahamas?</h2>
+            <div class="features">
+                <div class="feature">
+                    <i class="fas fa-umbrella-beach" aria-hidden="true"></i>
+                    <h3>Pristine Beaches</h3>
+                    <p>Miles of white sand and crystal-clear waters await you. Enjoy sunbathing, swimming, and water sports in some of the world's most beautiful beaches.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-fish" aria-hidden="true"></i>
+                    <h3>Rich Marine Life</h3>
+                    <p>Explore vibrant coral reefs and diverse sea creatures. Go snorkeling or diving to discover the underwater wonders of the Bahamas.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-cocktail" aria-hidden="true"></i>
+                    <h3>Vibrant Culture</h3>
+                    <p>Immerse yourself in the warm and welcoming Bahamian culture. Experience local festivals, music, and art that reflect the islands' rich history.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="cuisines" class="container">
+            <h2>Bahamian Cuisines</h2>
+            <div class="cuisines">
+                <div class="cuisine-item">
+                    <img src="https://images.unsplash.com/photo-1599789197514-47270cd526b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Conch Fritters - golden fried balls of conch meat">
+                    
+                    <div class="cuisine-item-content">
+                        <h3>Conch Fritters</h3>
+                        <p>Delicious deep-fried snacks made from conch meat, peppers, and spices. A popular appetizer that's crispy on the outside and tender on the inside.</p>
+                        <p class="price">$12.99</p>
+                        <div class="rating" data-rating="0">
+                            <span class="star" data-value="1">&#9733;</span>
+                            <span class="star" data-value="2">&#9733;</span>
+                            <span class="star" data-value="3">&#9733;</span>
+                            <span class="star" data-value="4">&#9733;</span>
+                            <span class="star" data-value="5">&#9733;</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="cuisine-item">
+                    <img src="https://images.unsplash.com/photo-1559737558-2f5a35f4523b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Bahamian Rock Lobster - grilled lobster tail with lemon">
+                    <div class="cuisine-item-content">
+                        <h3>Bahamian Rock Lobster</h3>
+                        <p>Grilled spiny lobster tail, often served with butter and lime. Known for its sweet and succulent meat, it's a must-try seafood delicacy.</p>
+                        <p class="price">$29.99</p>
+                        <div class="rating" data-rating="0">
+                            <span class="star" data-value="1">&#9733;</span>
+                            <span class="star" data-value="2">&#9733;</span>
+                            <span class="star" data-value="3">&#9733;</span>
+                            <span class="star" data-value="4">&#9733;</span>
+                            <span class="star" data-value="5">&#9733;</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="cuisine-item">
+                    <img src="https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Cracked Conch - fried conch meat with rice and vegetables">
+                    <div class="cuisine-item-content">
+                        <h3>Cracked Conch</h3>
+                        <p>Tenderized and fried conch, typically served with peas and rice. This dish offers a perfect blend of textures with its crispy exterior and tender inside.</p>
+                        <p class="price">$15.99</p>
+                        <div class="rating" data-rating="0">
+                            <span class="star" data-value="1">&#9733;</span>
+                            <span class="star" data-value="2">&#9733;</span>
+                            <span class="star" data-value="3">&#9733;</span>
+                            <span class="star" data-value="4">&#9733;</span>
+                            <span class="star" data-value="5">&#9733;</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="cuisine-item">
+                    <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1364&q=80" alt="Guava Duff - sweet pastry roll with guava filling">
+                    <div class="cuisine-item-content">
+                        <h3>Guava Duff</h3>
+                        <p>A sweet dessert made of dough rolled with guava, boiled and served with a rum sauce. This traditional Bahamian treat is the perfect end to any meal.</p>
+                        <p class="price">$8.99</p>
+                        <div class="rating" data-rating="0">
+                            <span class="star" data-value="1">&#9733;</span>
+                            <span class="star" data-value="2">&#9733;</span>
+                            <span class="star" data-value="3">&#9733;</span>
+                            <span class="star" data-value="4">&#9733;</span>
+                            <span class="star" data-value="5">&#9733;</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="places" class="container">
+            <h2>Places to Visit</h2>
+            <div class="places">
+                <div class="place-item">
+                    <img src="img/hotel.webp" alt="Nassau - aerial view of the colorful city and harbor">
+                    <div class="place-item-content">
+                        <h3>Nassau</h3>
+                        <p>The capital city, known for its beaches, coral reefs, and colonial architecture. Explore historical sites, enjoy water activities, and experience vibrant nightlife.</p>
+                        <div class="rating" data-rating="0">
+                            <span class="star" data-value="1">&#9733;</span>
+                            <span class="star" data-value="2">&#9733;</span>
+                            <span class="star" data-value="3">&#9733;</span>
+                            <span class="star" data-value="4">&#9733;</span>
+                            <span class="star" data-value="5">&#9733;</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="place-item">
+                    <img src="img/TAL-exuma-lead-image-EXUMABAHAMAS0224-bb15290781f349f1962247fb9f9124c3.jpg" alt="Exuma - crystal clear water with swimming pigs">
+                    <div class="place-item-content">
+                        <h3>Exuma</h3>
+                        <p>Famous for its sapphire-blue waters and swimming pigs at Pig Beach. Enjoy boat tours, snorkeling, and the unique experience of swimming with friendly pigs.</p>
+                        <div class="rating" data-rating="0">
+                            <span class="star" data-value="1">&#9733;</span>
+                            <span class="star" data-value="2">&#9733;</span>
+                            <span class="star" data-value="3">&#9733;</span>
+                            <span class="star" data-value="4">&#9733;</span>
+                            <span class="star" data-value="5">&#9733;</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="place-item">
+                    <img src="https://images.unsplash.com/photo-1571680719972-f18bb57077cf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Harbour Island - pink sand beach with turquoise water">
+                    <div class="place-item-content">
+                        <h3>Harbour Island</h3>
+                        <p>Known for its pink sand beaches and colorful New England-style architecture. Relax on the unique pink beaches, go diving, or explore the charming town on a golf cart.</p>
+                        <div class="rating" data-rating="0">
+                            <span class="star" data-value="1">&#9733;</span>
+                            <span class="star" data-value="2">&#9733;</span>
+                            <span class="star" data-value="3">&#9733;</span>
+                            <span class="star" data-value="4">&#9733;</span>
+                            <span class="star" data-value="5">&#9733;</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="place-item">
+                    <img src="https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Andros - lush green forest and blue hole">
+                    <div class="place-item-content">
+                        <h3>Andros</h3>
+                        <p>The largest island in the Bahamas, perfect for eco-adventures and bonefishing. Explore blue holes, hike through lush forests, and experience world-class bonefishing.</p>
+                        <div class="rating" data-rating="0">
+                            <span class="star" data-value="1">&#9733;</span>
+                            <span class="star" data-value="2">&#9733;</span>
+                            <span class="star" data-value="3">&#9733;</span>
+                            <span class="star" data-value="4">&#9733;</span>
+                            <span class="star" data-value="5">&#9733;</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="container">
+            <h2>Gallery</h2>
+            <div class="gallery">
+                <img src="https://images.unsplash.com/photo-1589979481223-deb893043163?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMjA3fDB8MXxzZWFyY2h8Mnx8YmFoYW1hc3x8MHx8fHwxNjg2ODY2ODkxfDA&ixlib=rb-4.0.3&q=80&w=1080" alt="Bahamas Beach with crystal clear water and white sand">
+                <img src="img/coral_reef_fishes_15831.jpg" alt="Underwater scene in the Bahamas with colorful fish and coral">
+                <img src="img/3.webp" alt="Luxurious Bahamas resort with swimming pool and palm trees">
+                <img src="img/4.jpg" alt="Beautiful sunset over the ocean in the Bahamas">
+            </div>
+        </section>
+
+        <section id="testimonials" class="container">
+            <h2>What Our Visitors Say</h2>
+            <div class="testimonials">
+                <div class="testimonial">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="John Doe - a smiling man with short dark hair">
+                    <p>"The Bahamas is a slice of paradise! The beaches are out of this world, and the people are so friendly. I can't wait to go back!"</p>
+                    <p><strong>- John Doe</strong></p>
+                </div>
+                <div class="testimonial">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Jane Smith - a smiling woman with long blonde hair">
+                    <p>"From snorkeling in crystal-clear waters to relaxing on pristine beaches, our trip to The Bahamas was unforgettable. Highly recommend!"</p>
+                    <p><strong>- Jane Smith</strong></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="container">
+            <h2>Plan Your Trip</h2>
+            <form id="contact-form">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Tell us about your dream Bahamas vacation" required></textarea>
+                <button type="submit" class="btn">Send</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Bahamas Tourism. All rights reserved.</p>
+    </footer>
+
+    <div id="itemModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <img id="modalImage" src="" alt="" class="modal-image">
+            <h2 id="modalTitle"></h2>
+            <p id="modalDescription"></p>
+            <div class="rating" data-rating="0">
+                <span class="star" data-value="1">&#9733;</span>
+                <span class="star" data-value="2">&#9733;</span>
+                <span class="star" data-value="3">&#9733;</span>
+                <span class="star" data-value="4">&#9733;</span>
+                <span class="star" data-value="5">&#9733;</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for form submission
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your interest! We will get back to you soon.');
+            this.reset();
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Simple image slider for testimonials
+        const testimonials = document.querySelectorAll('.testimonial');
+        let currentTestimonial = 0;
+
+        function showNextTestimonial() {
+            testimonials[currentTestimonial].style.display = 'none';
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            testimonials[currentTestimonial].style.display = 'block';
+        }
+
+        // Initialize testimonials
+        testimonials.forEach((testimonial, index) => {
+            if (index !== 0) {
+                testimonial.style.display = 'none';
+            }
+        });
+
+        // Change testimonial every 5 seconds
+        setInterval(showNextTestimonial, 5000);
+
+        // Rating system
+        document.querySelectorAll('.rating').forEach(ratingContainer => {
+            const stars = ratingContainer.querySelectorAll('.star');
+            
+            stars.forEach(star => {
+                star.addEventListener('click', () => {
+                    const value = parseInt(star.getAttribute('data-value'));
+                    ratingContainer.setAttribute('data-rating', value);
+                    
+                    stars.forEach((s, index) => {
+                        if (index < value) {
+                            s.classList.add('active');
+                        } else {
+                            s.classList.remove('active');
+                        }
+                    });
+                });
+            });
+        });
+
+        // Modal functionality
+        const modal = document.getElementById('itemModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDescription = document.getElementById('modalDescription');
+        const closeBtn = document.getElementsByClassName('close')[0];
+
+        function openModal(item) {
+            modalImage.src = item.querySelector('img').src;
+            modalImage.alt = item.querySelector('img').alt;
+            modalTitle.textContent = item.querySelector('h3').textContent;
+            modalDescription.textContent = item.querySelector('p').textContent;
+            modal.style.display = 'block';
+
+            // Set the rating
+            const rating = item.querySelector('.rating').getAttribute('data-rating');
+            setModalRating(rating);
+        }
+
+        function setModalRating(rating) {
+            const modalRating = modal.querySelector('.rating');
+            modalRating.setAttribute('data-rating', rating);
+            const stars = modalRating.querySelectorAll('.star');
+            stars.forEach((star, index) => {
+                if (index < rating) {
+                    star.classList.add('active');
+                } else {
+                    star.classList.remove('active');
+                }
+            });
+        }
+
+        closeBtn.onclick = function() {
+            modal.style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Add click event listeners to cuisine and place items
+        document.querySelectorAll('.cuisine-item, .place-item').forEach(item => {
+            item.addEventListener('click', () => openModal(item));
+        });
+
+        // Update rating system to work in the modal
+        modal.querySelector('.rating').addEventListener('click', function(e) {
+            if (e.target.classList.contains('star')) {
+                const value = parseInt(e.target.getAttribute('data-value'));
+                this.setAttribute('data-rating', value);
+                
+                const stars = this.querySelectorAll('.star');
+                stars.forEach((s, index) => {
+                    if (index < value) {
+                        s.classList.add('active');
+                    } else {
+                        s.classList.remove('active');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
